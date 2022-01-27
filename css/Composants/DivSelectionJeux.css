@@ -1,0 +1,33 @@
+.divJeux{
+    display: flex;
+    flex-wrap: wrap;
+    overflow-x: hidden;
+    overflow-y: auto;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+}
+
+.divSelectionJeux{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    padding: 10px;
+    cursor: pointer;
+}
+.divSelectionJeux:hover{
+    opacity: 0.5;
+}
+
+.imgSelectionJeux{
+    border-radius: 0.2rem;
+    width: 100%;
+    object-fit: cover;
+}
+
+.nomJeux{
+    padding: 0px;
+    margin: 0rem 0rem 1rem 0rem;
+    font-size: 1rem;
+    font-weight: bold;
+}

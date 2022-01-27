@@ -1,0 +1,31 @@
+
+.divPopUp{
+    position: absolute;
+    z-index: 99;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    margin-left: -32px;
+    margin-top: -36px;
+    border-radius: 8px;
+}
+
+.fenetrePopUp{
+    margin: auto 0;
+}
+
+.btnPopUp{
+    background: green;
+    padding: 0.3rem;
+    color: var(--textColor);
+    border: none;
+    border-radius: 8px;
+}
+.btnPopUp:hover{
+    background: rgb(0, 64, 0);
+}
+.messagePopUp{
+    font-size: 0.9rem;
+}

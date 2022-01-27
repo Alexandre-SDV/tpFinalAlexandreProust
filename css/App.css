@@ -1,0 +1,136 @@
+:root{
+    --police: 'Open Sans', sans-serif;
+    --textColor : aliceblue;
+}
+
+html {
+	font-family: var(--police);
+    color: var(--textColor);
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+    align-items: center;
+    justify-content: center;
+	margin: auto;
+	max-width: 1024px;
+    background: #D25EF2;
+    background: -webkit-linear-gradient(top left, #D25EF2, #D31974);
+    background: -moz-linear-gradient(top left, #D25EF2, #D31974);
+    background: linear-gradient(to bottom right, #D25EF2, #D31974);
+}
+
+header {
+	text-align: center;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+header h1{
+    margin: 1rem 0 0 0;
+}
+
+header p{
+    margin: 0.4rem;
+}
+
+.entete{
+    width: fit-content;
+}
+
+.entete img{
+    width: 64px;
+    height: 64px;
+    margin-right: 1.5rem;
+}
+
+.divTitre{
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+}
+
+main nav ul {
+	list-style: none;
+	padding: 0.5rem;
+	margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+main nav li {
+	margin-bottom: 0.5rem;
+	font-size: 0.9rem;
+}
+
+main nav li:last-child{
+    margin-left: 4%;
+}
+
+main section {
+	width: 100%;
+}
+
+.navigation{
+    width: 48%;
+    align-self: flex-end;
+}
+
+.sectionPage {
+	position: relative;
+    height: 60vh;
+    width: 100%;
+}
+
+.pSectionVide {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	white-space: nowrap;
+}
+
+.boutonJeux{
+    position: absolute;
+	top: 60%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+footer {
+    margin-top: 0.5rem;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: fit-content;
+    width: 92%;
+    text-align: center;
+}
+
+.divDevPar{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+}
+
+.divDevPar p:last-child{
+    margin: -6px 0 1rem 0;
+}
+
+.bouton{
+    cursor: pointer;
+    transition: width 5s;
+}
+.bouton:hover{
+    width: 16%;
+}

@@ -1,0 +1,62 @@
+.divFicheJeux{
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 100%;
+    width: 100%;
+}
+
+.divFicheLigne1, .divFicheLigne2{
+    padding: 10px;
+    width: 100%;
+}
+
+.ligne1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nomJeuxGestionnaire{
+    font-size: 2rem;
+    margin-right: 5% !important;
+    padding: 0px;
+}
+
+.ligne1 img{
+    width: 200px;
+    height: 250px;
+}
+
+.ligne2{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+
+.dateJeux{
+    display: flex;
+    flex-direction: column;
+} 
+
+.divFicheDesc{
+    width: 100%;
+}
+
+.divDescriptions{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    padding: 10px;
+}
+
+.divDescCourt p:first-child, .divDescLong p:first-child{
+    font-weight: bold;
+}
+
+.boutonAjouterJeux{
+    width: fit-content;
+    margin: auto;
+}

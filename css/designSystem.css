@@ -1,0 +1,134 @@
+.boutonOrange{
+    background-color: rgb(218, 142, 1);
+    padding: 0.3rem;
+    border-radius: 2px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    border: none;
+    white-space: nowrap;
+    color: var(--textColor);
+}
+.boutonOrange:hover{
+    background-color:rgb(160, 104, 0);
+}
+
+.boutonRecherche{
+    background-color: rgb(0, 89, 255);
+    border: none;
+    color: var(--textColor);
+    cursor: pointer;
+    height: 100%;
+    padding: 3px;
+    border-radius: 0px 2px 2px 0px;
+    font-size: 0.9rem;
+}
+.boutonRecherche:hover{
+    background-color: rgb(0, 62, 179);
+}
+
+.liInput input{
+    border-radius: 2px 0px 0px 2px;
+    font-size: 0.9rem;
+}
+
+.encadreFenetre{
+    background-color: rgb(17, 17, 17);
+    border-radius: 8px;
+    padding: 36px 32px 16px 32px;
+    margin: 10px;
+    position: relative;
+}
+.encadreFenetre::before{
+    content: url('../refs/entete_window.svg');
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2rem;
+    line-height: 32px;
+    background-color: rgb(42, 42, 42);
+    border-radius: 8px 8px 0px 0px;
+    text-align: left;
+}
+
+.loaderBalleCarree{
+    width: 0.7rem;
+    height: 0.7rem;
+    background: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    animation:  mouvementBalle 1s infinite;
+}
+
+.loaderBarreGauche{
+    content: "";
+    width: 0.5rem;
+    height: 2rem;
+    background: white;
+    position: absolute;
+    top: 48%;
+    left: 48%;
+    animation: mouvementBarreGauche 1s infinite;
+}
+
+.loaderBarreDroite{
+    content: "";
+    width: 0.5rem;
+    height: 2rem;
+    background: white;
+    position: absolute;
+    top: 48%;
+    left: 53%;
+    animation: mouvementBarreDroite 1s infinite;
+}
+
+
+@keyframes mouvementBalle {
+    0% {
+        transform: translateX(-120%);
+    }
+    50%{
+        transform: translateX(200%);
+    }
+    100%{
+        transform: translateX(-120%);
+    }
+}
+
+@keyframes mouvementBarreGauche {
+    0% {
+        transform: translateY(-10%);
+    }
+    50%{
+        transform: translateY(10%);
+    }
+    100%{
+        transform: translateY(-10%);
+    }
+}
+
+@keyframes mouvementBarreDroite {
+    0% {
+        transform: translateY(10%);
+    }
+    50%{
+        transform: translateY(-10%);
+    }
+    100%{
+        transform: translateY(10%);
+    }
+}
+
+.plateformes span{
+    margin: 0 5px;
+    background-color: rgb(0, 98, 255);
+    border: none;
+    border-radius: 8px;
+    padding: 5px;
+}
+
+.plateformes{
+    padding: 10px;
+}
