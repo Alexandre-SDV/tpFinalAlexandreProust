@@ -57,7 +57,9 @@ class DAO {
 	static #mesJeux = new Map();
 	static #jeuxRecherche = new Map();
 
+	//Fonction qui télécharge les données des jeux sans filtre
 	static async telechargerDonneesJeux() {
+		this.#mapJeux.clear();
 		if (this.#mapJeux.size > 0) {
 			return this.#mapJeux;
 		}
@@ -83,7 +85,9 @@ class DAO {
 		}
 	}
 
+	//Fonction qui télécharge les données des jeux pour un mot défini dans la barre de recherche
 	static async telechargerDonneesJeuxRecherche() {
+		this.#jeuxRecherche.clear();
 		if (this.#jeuxRecherche.size > 0) {
 			return this.#jeuxRecherche;
 		}

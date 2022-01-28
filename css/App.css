@@ -129,6 +129,7 @@ footer {
 
 .bouton{
     cursor: pointer;
+    width: fit-content;
     transition: width 5s;
 }
 .bouton:hover{
