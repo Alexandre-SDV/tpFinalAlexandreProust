@@ -17,7 +17,9 @@ export default class DAO {
 			const jsonRequeteListe = await resListeJeux.json();
 			const listeJeux = jsonRequeteListe.results;
 			if (!listeJeux || !Array.isArray(listeJeux) || listeJeux.length === 0) {
-				throw new Error("Données réponse non conformes");
+				//throw new Error("Données réponse non conformes");
+				let popup = new PopUp("Données réponse non conformes");
+            	App.sectionPage.append(popup.div);
 			}
 
 			for (let i = 0; i < listeJeux.length; i++) {
@@ -30,7 +32,9 @@ export default class DAO {
 			return this.#mapJeux;
 		} catch(e) {
 			console.error(e);
-			alert("Erreur pendant le téléchargement des Jeux");
+			// alert("Erreur pendant le téléchargement des Jeux");
+			let popup = new PopUp("Erreur pendant le téléchargement des Jeux");
+            App.sectionPage.append(popup.div);
 		}
 	}
 

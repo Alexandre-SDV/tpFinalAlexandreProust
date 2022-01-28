@@ -51,6 +51,23 @@ export default class GestionnaireJeux {
 		divFicheJeux.classList.add("divFicheJeux");
 		App.sectionPage.append(divFicheJeux);
 
+        //Bouton retour
+        const divFicheBoutonRetour = document.createElement("div");
+        divFicheBoutonRetour.classList.add("divFicheBoutonRetour");
+
+        divFicheBoutonRetour.innerHTML = `
+        <div class="divFicheBoutonRetour">
+            <span class="boutonRetour">Retour</span>
+        </div>
+        `;
+
+        
+        divFicheBoutonRetour.onclick = () => {
+            this.clickBoutonJeux();
+        }
+
+        divFicheJeux.append(divFicheBoutonRetour);
+
         //Première ligne de la fiche d'un jeux (nom + image)
         const divFicheLigne1 = document.createElement("div");
         divFicheLigne1.classList.add("divFicheLigne1");

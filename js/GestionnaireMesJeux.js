@@ -31,6 +31,9 @@ export default class GestionnaireMesJeux {
 
         App.sectionPage.innerHTML = `
 			<div class="divFicheJeux">
+                <div class="divFicheBoutonRetour">
+                    <span class="boutonRetour">Retour</span>
+                </div>
                 <div class="divFicheLigne1">
                     <div class="ligne1">
                         <span class="nomJeuxGestionnaire">${jeux.name}</span>
@@ -60,6 +63,11 @@ export default class GestionnaireMesJeux {
             </div>
 			</div>
 		`;
+
+        const divFicheBoutonRetour = App.sectionPage.querySelector(".divFicheBoutonRetour");
+        divFicheBoutonRetour.onclick = () => {
+            this.clickBoutonMesJeux();
+        }
 
         const plateformes = App.sectionPage.querySelector(".plateformes");
 		for(let i=0; i<jeux.platforms.length; i++){

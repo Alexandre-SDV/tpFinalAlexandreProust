@@ -68,7 +68,9 @@ class DAO {
 			const jsonRequeteListe = await resListeJeux.json();
 			const listeJeux = jsonRequeteListe.results;
 			if (!listeJeux || !Array.isArray(listeJeux) || listeJeux.length === 0) {
-				throw new Error("Données réponse non conformes");
+				//throw new Error("Données réponse non conformes");
+				let popup = new PopUp("Données réponse non conformes");
+            	App.sectionPage.append(popup.div);
 			}
 
 			for (let i = 0; i < listeJeux.length; i++) {
@@ -81,7 +83,9 @@ class DAO {
 			return this.#mapJeux;
 		} catch(e) {
 			console.error(e);
-			alert("Erreur pendant le téléchargement des Jeux");
+			// alert("Erreur pendant le téléchargement des Jeux");
+			let popup = new PopUp("Erreur pendant le téléchargement des Jeux");
+            App.sectionPage.append(popup.div);
 		}
 	}
 
@@ -195,7 +199,7 @@ class DivSelectionJeux {
 }
 }
 
-class PopUp {
+class PopUp$1 {
     div;
 
     constructor(message, callbackClick) {
@@ -225,11 +229,11 @@ class GestionnaireMesJeux {
     static clickBoutonMesJeux() {
         const mesJeux = DAO.chargerMesJeux();
 
-        App.sectionPage.innerHTML = "";
+        App$1.sectionPage.innerHTML = "";
 
         const divMesJeux = document.createElement("div");
 		divMesJeux.classList.add("divMesJeux");
-		App.sectionPage.append(divMesJeux);
+		App$1.sectionPage.append(divMesJeux);
 
         mesJeux.forEach(jeuxAjoute=>{
 			const divSelection = new DivSelectionJeux(jeuxAjoute, this.afficherFicheJeuxAjoute.bind(this));
@@ -245,8 +249,11 @@ class GestionnaireMesJeux {
         }
 
 
-        App.sectionPage.innerHTML = `
+        App$1.sectionPage.innerHTML = `
 			<div class="divFicheJeux">
+                <div class="divFicheBoutonRetour">
+                    <span class="boutonRetour">Retour</span>
+                </div>
                 <div class="divFicheLigne1">
                     <div class="ligne1">
                         <span class="nomJeuxGestionnaire">${jeux.name}</span>
@@ -277,7 +284,12 @@ class GestionnaireMesJeux {
 			</div>
 		`;
 
-        const plateformes = App.sectionPage.querySelector(".plateformes");
+        const divFicheBoutonRetour = App$1.sectionPage.querySelector(".divFicheBoutonRetour");
+        divFicheBoutonRetour.onclick = () => {
+            this.clickBoutonMesJeux();
+        };
+
+        const plateformes = App$1.sectionPage.querySelector(".plateformes");
 		for(let i=0; i<jeux.platforms.length; i++){
 			const platElement = document.createElement("span");
 			platElement.innerText = jeux.platforms[i].abbreviation;
@@ -294,7 +306,7 @@ class GestionnaireMesJeux {
 		}
 
         //Bouton Retirer de mes favoris
-        const divFicheJeux = App.sectionPage.querySelector(".divFicheJeux");
+        const divFicheJeux = App$1.sectionPage.querySelector(".divFicheJeux");
         const boutonRetirerJeux = document.createElement("div");
 		boutonRetirerJeux.classList.add("bouton", "boutonOrange", "boutonAjouterJeux");
 		boutonRetirerJeux.innerText = "Retirer de mes Favoris";
@@ -306,7 +318,7 @@ class GestionnaireMesJeux {
 			// 	}
 				DAO.enleverJeux(jeux);
 				// alert("Jeux ajouté");
-                let popup = new PopUp("Jeux supprimé !");
+                let popup = new PopUp$1("Jeux supprimé !");
                 divFicheJeux.append(popup.div);
         };
         divFicheJeux.append(boutonRetirerJeux);
@@ -316,16 +328,16 @@ class GestionnaireMesJeux {
 class GestionnaireJeux {
 
     static async clickBoutonJeux() {
-        App.afficherLoaderSectionPage();
+        App$1.afficherLoaderSectionPage();
 
         const mapJeux = await DAO.telechargerDonneesJeux();
 
-        App.sectionPage.innerHTML = "";
+        App$1.sectionPage.innerHTML = "";
 
         const divJeux = document.createElement("div");
         divJeux.classList.add("divJeux");
 
-        App.sectionPage.append(divJeux);
+        App$1.sectionPage.append(divJeux);
 
         mapJeux.forEach(jeux=>{
 	
@@ -335,16 +347,16 @@ class GestionnaireJeux {
     }
 
     static async clickBoutonRecherche(nomJeux) {
-        App.afficherLoaderSectionPage();
+        App$1.afficherLoaderSectionPage();
 
         const jeuxRechercher = await DAO.telechargerDonneesJeuxRecherche(nomJeux);
 
-        App.sectionPage.innerHTML = "";
+        App$1.sectionPage.innerHTML = "";
 
         const divJeux = document.createElement("div");
         divJeux.classList.add("divJeux");
 
-        App.sectionPage.append(divJeux);
+        App$1.sectionPage.append(divJeux);
 
         jeuxRechercher.forEach(jeux=>{
 	
@@ -354,11 +366,28 @@ class GestionnaireJeux {
     }
 
     static afficherFicheJeux(jeux) {
-        App.sectionPage.innerHTML = "";
+        App$1.sectionPage.innerHTML = "";
 
         const divFicheJeux = document.createElement("div");
 		divFicheJeux.classList.add("divFicheJeux");
-		App.sectionPage.append(divFicheJeux);
+		App$1.sectionPage.append(divFicheJeux);
+
+        //Bouton retour
+        const divFicheBoutonRetour = document.createElement("div");
+        divFicheBoutonRetour.classList.add("divFicheBoutonRetour");
+
+        divFicheBoutonRetour.innerHTML = `
+        <div class="divFicheBoutonRetour">
+            <span class="boutonRetour">Retour</span>
+        </div>
+        `;
+
+        
+        divFicheBoutonRetour.onclick = () => {
+            this.clickBoutonJeux();
+        };
+
+        divFicheJeux.append(divFicheBoutonRetour);
 
         //Première ligne de la fiche d'un jeux (nom + image)
         const divFicheLigne1 = document.createElement("div");
@@ -441,14 +470,14 @@ class GestionnaireJeux {
 			// 	}
 				DAO.ajouterAMesJeux(jeux);
 				// alert("Jeux ajouté");
-                let popup = new PopUp("Jeux ajouté !");
+                let popup = new PopUp$1("Jeux ajouté !");
                 divFicheJeux.append(popup.div);
         };
         divFicheJeux.append(boutonAjouterJeux);
     }
 }
 
-class App {
+class App$1 {
     static sectionPage;
 
     static init() {
@@ -457,14 +486,14 @@ class App {
         this.sectionPage = document.querySelector(".sectionPage");
         if (!this.sectionPage) {
 			// throw new Error("sectionPage introuvable");
-			let popup = new PopUp("sectionPage introuvable");
+			let popup = new PopUp$1("sectionPage introuvable");
             divJeux.append(popup.div);
 		}
 
         const boutonJeux = document.querySelector(".boutonJeux");
 		if (!boutonJeux) {
 			// throw new Error("boutonJeux introuvable");
-			let popup = new PopUp("boutonJeux introuvable");
+			let popup = new PopUp$1("boutonJeux introuvable");
             divJeux.append(popup.div);
 		}
 		boutonJeux.addEventListener("click", GestionnaireJeux.clickBoutonJeux.bind(GestionnaireJeux));
@@ -472,7 +501,7 @@ class App {
         const boutonMesJeux = document.querySelector(".liMesFavoris");
 		if (!boutonMesJeux) {
 			// throw new Error("boutonMesJeux introuvable");
-			let popup = new PopUp("boutonMesJeux introuvable");
+			let popup = new PopUp$1("boutonMesJeux introuvable");
             divJeux.append(popup.div);
 		}
 		boutonMesJeux.addEventListener("click", GestionnaireMesJeux.clickBoutonMesJeux.bind(GestionnaireMesJeux));
@@ -480,7 +509,7 @@ class App {
 		const boutonRecherche = document.querySelector(".boutonRecherche");
 		if (!boutonRecherche) {
 			// throw new Error("boutonRecherche introuvable");
-			let popup = new PopUp("boutonRecherche introuvable");
+			let popup = new PopUp$1("boutonRecherche introuvable");
             divJeux.append(popup.div);
 		}
 		boutonRecherche.addEventListener("click", GestionnaireJeux.clickBoutonRecherche.bind(GestionnaireJeux));
@@ -506,4 +535,4 @@ class App {
 	}
 }
 
-window.onload = App.init.bind(App);
+window.onload = App$1.init.bind(App$1);
